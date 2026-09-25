@@ -1,0 +1,9 @@
+.PHONY: test vet lint build
+test:
+	go test ./...
+vet:
+	go vet ./...
+lint:
+	go run honnef.co/go/tools/cmd/staticcheck@v0.8.1 ./...
+build:
+	go build -o clipscribe ./cmd/clipscribe

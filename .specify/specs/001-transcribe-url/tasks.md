@@ -15,25 +15,25 @@ Checkpoint: fixtures reais em `testdata/`, ASSUMPTIONS 1–3 validadas.
 
 ## Fase 1 — Esqueleto
 
-- [ ] T010 → T006. `go mod init github.com/<user>/clipscribe`, `cmd/clipscribe/main.go`, `internal/app/run.go` com `Run` devolvendo 2 para args vazios. Teste: `internal/app/run_test.go`.
-- [ ] T011 → T010. Makefile ou `justfile` com `test`, `vet`, `lint` (`staticcheck`), `build`.
+- [x] T010 → T006. `go mod init github.com/<user>/clipscribe`, `cmd/clipscribe/main.go`, `internal/app/run.go` com `Run` devolvendo 2 para args vazios. Teste: `internal/app/run_test.go`.
+- [x] T011 → T010. Makefile ou `justfile` com `test`, `vet`, `lint` (`staticcheck`), `build`.
 
 ## Fase 2 — Núcleo puro (US4, US6, parte da US1)
 
-- [ ] T020 [P] → T010. Testes da allowlist de URL (válidas, hosts parecidos, http, userinfo, sem ID). `internal/media/url_test.go`.
-- [ ] T021 → T020. Implementar `media.ParseURL`. `internal/media/url.go`.
-- [ ] T022 [P] → T010. Testes do parse do JSON do yt-dlp contra `testdata/ytdlp/`. `internal/media/metadata_test.go`.
-- [ ] T023 → T022. Implementar `media.ParseVideo`. `internal/media/metadata.go`.
-- [ ] T024 [P] → T010. Testes do parse de VTT e do JSON do whisper. `internal/transcript/parse_test.go`.
-- [ ] T025 → T024. Implementar parsers. `internal/transcript/parse.go`.
-- [ ] T026 [P] → T010. Testes de `Paragraphs` com a regra C3 (pausa 1,5 s, teto 45 s, pontuação após 20 s). `internal/transcript/paragraph_test.go`.
-- [ ] T027 → T026. Implementar `Paragraphs`. `internal/transcript/paragraph.go`.
-- [ ] T028 [P] → T010. Testes de render md (golden file), srt e txt. Inclui escape de aspas e quebras de linha no frontmatter. `internal/transcript/render_test.go`.
-- [ ] T029 → T028. Implementar renders. `internal/transcript/render.go`.
-- [ ] T030 [P] → T010. Testes de nome de arquivo C2 (caracteres proibidos, 80 caracteres, emoji, X, colisão) e de escrita atômica. `internal/vault/file_test.go`.
-- [ ] T031 → T030. Implementar. `internal/vault/file.go`.
-- [ ] T032 [P] → T010. Testes de dedup por frontmatter em diretórios temporários. `internal/vault/dedup_test.go`.
-- [ ] T033 → T032. Implementar. `internal/vault/dedup.go`.
+- [x] T020 [P] → T010. Testes da allowlist de URL (válidas, hosts parecidos, http, userinfo, sem ID). `internal/media/url_test.go`.
+- [x] T021 → T020. Implementar `media.ParseURL`. `internal/media/url.go`.
+- [x] T022 [P] → T010. Testes do parse do JSON do yt-dlp contra `testdata/ytdlp/`. `internal/media/metadata_test.go`.
+- [x] T023 → T022. Implementar `media.ParseVideo`. `internal/media/metadata.go`.
+- [x] T024 [P] → T010. Testes do parse de VTT e do JSON do whisper. `internal/transcript/parse_test.go`.
+- [x] T025 → T024. Implementar parsers. `internal/transcript/parse.go`.
+- [x] T026 [P] → T010. Testes de `Paragraphs` com a regra C3 (pausa 1,5 s, teto 45 s, pontuação após 20 s). `internal/transcript/paragraph_test.go`.
+- [x] T027 → T026. Implementar `Paragraphs`. `internal/transcript/paragraph.go`.
+- [x] T028 [P] → T010. Testes de render md (golden file), srt e txt. Inclui escape de aspas e quebras de linha no frontmatter. `internal/transcript/render_test.go`.
+- [x] T029 → T028. Implementar renders. `internal/transcript/render.go`.
+- [x] T030 [P] → T010. Testes de nome de arquivo C2 (caracteres proibidos, 80 caracteres, emoji, X, colisão) e de escrita atômica. `internal/vault/file_test.go`.
+- [x] T031 → T030. Implementar. `internal/vault/file.go`.
+- [x] T032 [P] → T010. Testes de dedup por frontmatter em diretórios temporários. `internal/vault/dedup_test.go`.
+- [x] T033 → T032. Implementar. `internal/vault/dedup.go`.
 
 Checkpoint: `go test ./...` verde, sem rede e sem binários externos.
 
