@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unicode"
 
-	"clipscribe/internal/media"
+	"github.com/phant0um/clipscribe/internal/media"
 )
 
 const maxNameRunes = 80

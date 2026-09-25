@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"clipscribe/internal/app"
+	"github.com/phant0um/clipscribe/internal/app"
 )
 
 func main() {

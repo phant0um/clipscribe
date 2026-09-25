@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"clipscribe/internal/media"
+	"github.com/phant0um/clipscribe/internal/media"
 )
 
 const maxFrontmatterLines = 200

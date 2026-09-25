@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"clipscribe/internal/media"
+	"github.com/phant0um/clipscribe/internal/media"
 )
 
 func doc(p media.Platform) Doc {

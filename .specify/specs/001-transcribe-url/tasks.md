@@ -15,7 +15,7 @@ Checkpoint: fixtures reais em `testdata/`, ASSUMPTIONS 1–3 validadas.
 
 ## Fase 1 — Esqueleto
 
-- [x] T010 → T006. `go mod init github.com/<user>/clipscribe`, `cmd/clipscribe/main.go`, `internal/app/run.go` com `Run` devolvendo 2 para args vazios. Teste: `internal/app/run_test.go`.
+- [x] T010 → T006. `go mod init github.com/phant0um/clipscribe`, `cmd/clipscribe/main.go`, `internal/app/run.go` com `Run` devolvendo 2 para args vazios. Teste: `internal/app/run_test.go`.
 - [x] T011 → T010. Makefile ou `justfile` com `test`, `vet`, `lint` (`staticcheck`), `build`.
 
 ## Fase 2 — Núcleo puro (US4, US6, parte da US1)

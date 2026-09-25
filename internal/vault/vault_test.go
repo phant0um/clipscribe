@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"clipscribe/internal/media"
+	"github.com/phant0um/clipscribe/internal/media"
 )
 
 func TestFileName(t *testing.T) {
