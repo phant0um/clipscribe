@@ -27,15 +27,15 @@ clipscribe doctor [--install-model]
 ```
 cmd/clipscribe/main.go          os.Exit(app.Run(ctx, os.Args[1:], app.DefaultDeps()))
 internal/app/                   Run, doctor, flags, config, exit codes, Deps
-internal/media/                 URL allowlist, Video, parse do JSON do yt-dlp,
-                                adapters yt-dlp / ffmpeg / whisper-cli (montagem de args + exec)
+internal/media/                 URL allowlist, Video, parse do JSON do yt-dlp, erros sentinela
+internal/tools/                 adapters yt-dlp / ffmpeg / whisper-cli (montagem de args + exec)
 internal/transcript/            Segment, parse VTT, parse JSON do whisper, Paragraphs, render md/srt/txt
 internal/vault/                 nome de arquivo, dedup por frontmatter, escrita atômica
 internal/model/                 download do modelo com verificação SHA-256
 testdata/                       saídas reais capturadas no spike (JSON yt-dlp, VTT, JSON whisper)
 ```
 
-Cinco pacotes internos. `app` é o único que conhece todos os outros. `transcript` e `vault` não importam `os/exec`.
+Seis pacotes internos. Os adapters saíram de `media` para `tools` durante a Fase 4, porque o adapter do Whisper importa `transcript`, que já importa `media` (ciclo). `app` é o único que conhece todos os outros. `transcript` e `vault` não importam `os/exec`.
 
 ## Interfaces (em `internal/app`)
 

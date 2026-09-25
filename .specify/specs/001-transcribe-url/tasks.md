@@ -39,17 +39,17 @@ Checkpoint: `go test ./...` verde, sem rede e sem binários externos.
 
 ## Fase 3 — Orquestração (US1, US2, US3, US5)
 
-- [ ] T040 → T021–T033. Testes de `app.Run` com fakes: caminho legenda (AC1.5), caminho Whisper (AC1.6), X sem vídeo (AC2.3), URL inválida sem subprocesso (AC4.1), flags inválidas (AC4.2), cookie aberto (AC3.2), falha de auth sugere `--cookies` (AC3.3), cookie nunca em stderr (AC3.4), dedup (AC5.1), `--force` (AC5.2), cancelamento limpa temporários (AC5.3), `--keep-audio` (AC5.4), formatos (AC6.3), dependência ausente (AC7.2). `internal/app/run_test.go`.
-- [ ] T041 → T040. Implementar `app.Run`, config e flags. `internal/app/run.go`, `internal/app/config.go`.
+- [x] T040 → T021–T033. Testes de `app.Run` com fakes: caminho legenda (AC1.5), caminho Whisper (AC1.6), X sem vídeo (AC2.3), URL inválida sem subprocesso (AC4.1), flags inválidas (AC4.2), cookie aberto (AC3.2), falha de auth sugere `--cookies` (AC3.3), cookie nunca em stderr (AC3.4), dedup (AC5.1), `--force` (AC5.2), cancelamento limpa temporários (AC5.3), `--keep-audio` (AC5.4), formatos (AC6.3), dependência ausente (AC7.2). `internal/app/run_test.go`.
+- [x] T041 → T040. Implementar `app.Run`, config e flags. `internal/app/run.go`, `internal/app/config.go`.
 
 Checkpoint: todos os ACs das US1–US6 verdes com fakes.
 
 ## Fase 4 — Adapters reais
 
-- [ ] T050 [P] → T041. Testes da montagem de argumentos do yt-dlp (`--ignore-config`, `--` antes da URL, `--cookies` só se passado, nunca `--exec`). `internal/media/ytdlp_test.go`.
-- [ ] T051 → T050. Implementar adapter yt-dlp. `internal/media/ytdlp.go`.
-- [ ] T052 [P] → T041. Testes de argumentos do ffmpeg e do whisper-cli. `internal/media/ffmpeg_test.go`, `internal/media/whisper_test.go`.
-- [ ] T053 → T052. Implementar adapters. `internal/media/ffmpeg.go`, `internal/media/whisper.go`.
+- [x] T050 [P] → T041. Testes da montagem de argumentos do yt-dlp (`--ignore-config`, `--` antes da URL, `--cookies` só se passado, nunca `--exec`). `internal/media/ytdlp_test.go`.
+- [x] T051 → T050. Implementar adapter yt-dlp. `internal/media/ytdlp.go`.
+- [x] T052 [P] → T041. Testes de argumentos do ffmpeg e do whisper-cli. `internal/media/ffmpeg_test.go`, `internal/media/whisper_test.go`.
+- [x] T053 → T052. Implementar adapters. `internal/media/ffmpeg.go`, `internal/media/whisper.go`.
 
 ## Fase 5 — Doctor e modelo (US7)
 

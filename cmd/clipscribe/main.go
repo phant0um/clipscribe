@@ -1,3 +1,4 @@
+// Command clipscribe transcribes a YouTube or X video into an Obsidian clipping.
 package main
 
 import (
@@ -11,7 +12,7 @@ import (
 
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	code := app.Run(ctx, os.Args[1:], app.Deps{Stdout: os.Stdout, Stderr: os.Stderr})
+	code := app.Run(ctx, os.Args[1:], app.DefaultDeps())
 	stop()
 	os.Exit(code)
 }
