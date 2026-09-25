@@ -9,11 +9,13 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/phant0um/clipscribe/internal/media"
+	"github.com/phant0um/clipscribe/internal/model"
 	"github.com/phant0um/clipscribe/internal/transcript"
 	"github.com/phant0um/clipscribe/internal/vault"
 )
@@ -65,7 +67,9 @@ type Deps struct {
 	Stdout      io.Writer
 	Stderr      io.Writer
 	ConfigPath  string
-	TempDir     string // parent of the per-run temp dir; "" = system default
+	TempDir     string       // parent of the per-run temp dir; "" = system default
+	HTTPClient  *http.Client // used by doctor --install-model
+	Model       model.Spec   // zero value means model.LargeV3Turbo
 }
 
 var requiredBinaries = []string{"yt-dlp", "ffmpeg", "whisper-cli"}

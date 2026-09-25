@@ -53,8 +53,8 @@ Checkpoint: todos os ACs das US1–US6 verdes com fakes.
 
 ## Fase 5 — Doctor e modelo (US7)
 
-- [ ] T060 → T041. Testes do `doctor` com `LookPath` falso (AC7.1) e do download do modelo com `httptest.Server`: hash certo grava, hash errado apaga e sai com 1 (AC7.3). `internal/app/doctor_test.go`, `internal/model/install_test.go`.
-- [ ] T061 → T060. Implementar. `internal/app/doctor.go`, `internal/model/install.go`.
+- [x] T060 → T041. Testes do `doctor` com `LookPath` falso (AC7.1) e do download do modelo com `httptest.Server`: hash certo grava, hash errado apaga e sai com 1 (AC7.3). `internal/app/doctor_test.go`, `internal/model/install_test.go`.
+- [x] T061 → T060. Implementar. `internal/app/doctor.go`, `internal/model/install.go`.
 
 ## Fase 6 — Integração e verificação
 
