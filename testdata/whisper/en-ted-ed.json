@@ -1,0 +1,678 @@
+{
+ "result": {
+  "language": "en"
+ },
+ "transcription": [
+  {
+   "timestamps": {
+    "from": "00:00:00,000",
+    "to": "00:00:11,080"
+   },
+   "offsets": {
+    "from": 0,
+    "to": 11080
+   },
+   "text": " this synthetic test text talks about a simple example with short lines for each part?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:11,080",
+    "to": "00:00:12,820"
+   },
+   "offsets": {
+    "from": 11080,
+    "to": 12820
+   },
+   "text": " of the lesson this synthetic test text?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:12,820",
+    "to": "00:00:15,140"
+   },
+   "offsets": {
+    "from": 12820,
+    "to": 15140
+   },
+   "text": " talks about a simple example with short?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:15,140",
+    "to": "00:00:18,440"
+   },
+   "offsets": {
+    "from": 15140,
+    "to": 18440
+   },
+   "text": " lines for each part of the lesson?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:18,440",
+    "to": "00:00:19,440"
+   },
+   "offsets": {
+    "from": 18440,
+    "to": 19440
+   },
+   "text": " this synthetic test text talks."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:19,440",
+    "to": "00:00:22,000"
+   },
+   "offsets": {
+    "from": 19440,
+    "to": 22000
+   },
+   "text": " about a simple example?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:22,000",
+    "to": "00:00:26,980"
+   },
+   "offsets": {
+    "from": 22000,
+    "to": 26980
+   },
+   "text": " with short lines for each part of the lesson this synthetic test text talks about a"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:26,980",
+    "to": "00:00:28,800"
+   },
+   "offsets": {
+    "from": 26980,
+    "to": 28800
+   },
+   "text": " simple example with short."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:28,800",
+    "to": "00:00:32,840"
+   },
+   "offsets": {
+    "from": 28800,
+    "to": 32840
+   },
+   "text": " lines for each part of the lesson this synthetic test text talks about"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:32,840",
+    "to": "00:00:37,240"
+   },
+   "offsets": {
+    "from": 32840,
+    "to": 37240
+   },
+   "text": " a simple example with short lines for."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:37,240",
+    "to": "00:00:41,800"
+   },
+   "offsets": {
+    "from": 37240,
+    "to": 41800
+   },
+   "text": " each part of the lesson this synthetic test text talks about a simple example with short lines"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:41,800",
+    "to": "00:00:44,500"
+   },
+   "offsets": {
+    "from": 41800,
+    "to": 44500
+   },
+   "text": " for each part of the lesson."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:44,500",
+    "to": "00:00:48,840"
+   },
+   "offsets": {
+    "from": 44500,
+    "to": 48840
+   },
+   "text": " this synthetic test text talks about a simple example with short lines for each part of the"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:48,840",
+    "to": "00:00:50,460"
+   },
+   "offsets": {
+    "from": 48840,
+    "to": 50460
+   },
+   "text": " lesson this synthetic."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:50,460",
+    "to": "00:00:53,420"
+   },
+   "offsets": {
+    "from": 50460,
+    "to": 53420
+   },
+   "text": " test text talks about a simple example with short lines for."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:53,420",
+    "to": "00:00:56,600"
+   },
+   "offsets": {
+    "from": 53420,
+    "to": 56600
+   },
+   "text": " each part of the lesson this synthetic test text."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:56,600",
+    "to": "00:01:00,640"
+   },
+   "offsets": {
+    "from": 56600,
+    "to": 60640
+   },
+   "text": " talks about a simple example with short lines for each part of the lesson this"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:00,640",
+    "to": "00:01:03,160"
+   },
+   "offsets": {
+    "from": 60640,
+    "to": 63160
+   },
+   "text": " synthetic test text talks about."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:03,160",
+    "to": "00:01:06,160"
+   },
+   "offsets": {
+    "from": 63160,
+    "to": 66160
+   },
+   "text": " a simple example with short lines for each part of the lesson this."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:06,160",
+    "to": "00:01:10,200"
+   },
+   "offsets": {
+    "from": 66160,
+    "to": 70200
+   },
+   "text": " synthetic test text talks about a simple example with short lines for each part of"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:10,200",
+    "to": "00:01:11,200"
+   },
+   "offsets": {
+    "from": 70200,
+    "to": 71200
+   },
+   "text": " the."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:11,200",
+    "to": "00:01:16,040"
+   },
+   "offsets": {
+    "from": 71200,
+    "to": 76040
+   },
+   "text": " lesson this synthetic test text talks about a simple example with short lines for each part of the lesson"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:16,040",
+    "to": "00:01:18,720"
+   },
+   "offsets": {
+    "from": 76040,
+    "to": 78720
+   },
+   "text": " this synthetic test text talks about a."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:18,720",
+    "to": "00:01:23,480"
+   },
+   "offsets": {
+    "from": 78720,
+    "to": 83480
+   },
+   "text": " simple example with short lines for each part of the lesson this synthetic test text talks about"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:23,480",
+    "to": "00:01:25,820"
+   },
+   "offsets": {
+    "from": 83480,
+    "to": 85820
+   },
+   "text": " a simple example."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:25,820",
+    "to": "00:01:27,780"
+   },
+   "offsets": {
+    "from": 85820,
+    "to": 87780
+   },
+   "text": " with short lines for each part of."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:27,780",
+    "to": "00:01:33,720"
+   },
+   "offsets": {
+    "from": 87780,
+    "to": 93720
+   },
+   "text": " the lesson this synthetic test text talks about a simple example with"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:33,720",
+    "to": "00:01:36,660"
+   },
+   "offsets": {
+    "from": 93720,
+    "to": 96660
+   },
+   "text": " short lines for each part of the."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:36,660",
+    "to": "00:01:41,420"
+   },
+   "offsets": {
+    "from": 96660,
+    "to": 101420
+   },
+   "text": " lesson this synthetic test text talks about a simple example with short lines."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:41,420",
+    "to": "00:01:44,900"
+   },
+   "offsets": {
+    "from": 101420,
+    "to": 104900
+   },
+   "text": " for each part of the lesson this synthetic test text talks about a simple example"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:44,900",
+    "to": "00:01:49,520"
+   },
+   "offsets": {
+    "from": 104900,
+    "to": 109520
+   },
+   "text": " with short lines for each part of the lesson this synthetic test text talks about a"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:49,520",
+    "to": "00:01:50,600"
+   },
+   "offsets": {
+    "from": 109520,
+    "to": 110600
+   },
+   "text": " simple example."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:50,600",
+    "to": "00:01:55,260"
+   },
+   "offsets": {
+    "from": 110600,
+    "to": 115260
+   },
+   "text": " with short lines for each part of the lesson this synthetic test text talks about"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:55,260",
+    "to": "00:01:57,940"
+   },
+   "offsets": {
+    "from": 115260,
+    "to": 117940
+   },
+   "text": " a simple example with."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:57,940",
+    "to": "00:02:02,100"
+   },
+   "offsets": {
+    "from": 117940,
+    "to": 122100
+   },
+   "text": " short lines for each part of the lesson this synthetic test text talks about a"
+  },
+  {
+   "timestamps": {
+    "from": "00:02:02,100",
+    "to": "00:02:06,920"
+   },
+   "offsets": {
+    "from": 122100,
+    "to": 126920
+   },
+   "text": " simple example with short lines for each part of the lesson this."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:06,920",
+    "to": "00:02:12,680"
+   },
+   "offsets": {
+    "from": 126920,
+    "to": 132680
+   },
+   "text": " synthetic test text talks about a simple example with short lines for each part of the"
+  },
+  {
+   "timestamps": {
+    "from": "00:02:12,680",
+    "to": "00:02:14,840"
+   },
+   "offsets": {
+    "from": 132680,
+    "to": 134840
+   },
+   "text": " lesson this synthetic test."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:14,840",
+    "to": "00:02:19,280"
+   },
+   "offsets": {
+    "from": 134840,
+    "to": 139280
+   },
+   "text": " text talks about a simple example with short lines for each part of the lesson?"
+  },
+  {
+   "timestamps": {
+    "from": "00:02:19,280",
+    "to": "00:02:23,700"
+   },
+   "offsets": {
+    "from": 139280,
+    "to": 143700
+   },
+   "text": " this synthetic test text talks about a simple example with short."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:23,700",
+    "to": "00:02:27,540"
+   },
+   "offsets": {
+    "from": 143700,
+    "to": 147540
+   },
+   "text": " lines for each part of the lesson this synthetic test text talks about a"
+  },
+  {
+   "timestamps": {
+    "from": "00:02:27,540",
+    "to": "00:02:32,580"
+   },
+   "offsets": {
+    "from": 147540,
+    "to": 152580
+   },
+   "text": " simple example with short lines for each part of the lesson this synthetic test text talks about"
+  },
+  {
+   "timestamps": {
+    "from": "00:02:32,580",
+    "to": "00:02:34,180"
+   },
+   "offsets": {
+    "from": 152580,
+    "to": 154180
+   },
+   "text": " a simple example."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:34,180",
+    "to": "00:02:39,820"
+   },
+   "offsets": {
+    "from": 154180,
+    "to": 159820
+   },
+   "text": " with short lines for each part of the lesson this synthetic test text talks."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:39,820",
+    "to": "00:02:44,620"
+   },
+   "offsets": {
+    "from": 159820,
+    "to": 164620
+   },
+   "text": " about a simple example with short lines for each part of the lesson this synthetic test text"
+  },
+  {
+   "timestamps": {
+    "from": "00:02:44,620",
+    "to": "00:02:50,420"
+   },
+   "offsets": {
+    "from": 164620,
+    "to": 170420
+   },
+   "text": " talks about a simple example with short lines for each part of the lesson this synthetic."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:50,420",
+    "to": "00:02:55,760"
+   },
+   "offsets": {
+    "from": 170420,
+    "to": 175760
+   },
+   "text": " test text talks about a simple example with short lines for each part of the lesson this synthetic."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:55,760",
+    "to": "00:02:58,800"
+   },
+   "offsets": {
+    "from": 175760,
+    "to": 178800
+   },
+   "text": " test text talks about a simple example with short lines for."
+  },
+  {
+   "timestamps": {
+    "from": "00:02:58,800",
+    "to": "00:03:03,680"
+   },
+   "offsets": {
+    "from": 178800,
+    "to": 183680
+   },
+   "text": " each part of the lesson this synthetic test text talks about a."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:03,680",
+    "to": "00:03:07,560"
+   },
+   "offsets": {
+    "from": 183680,
+    "to": 187560
+   },
+   "text": " simple example with short lines for each part of the lesson this synthetic test text talks about a"
+  },
+  {
+   "timestamps": {
+    "from": "00:03:07,560",
+    "to": "00:03:10,600"
+   },
+   "offsets": {
+    "from": 187560,
+    "to": 190600
+   },
+   "text": " simple example with short lines."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:10,600",
+    "to": "00:03:13,780"
+   },
+   "offsets": {
+    "from": 190600,
+    "to": 193780
+   },
+   "text": " for each part of the lesson this synthetic test."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:13,780",
+    "to": "00:03:18,360"
+   },
+   "offsets": {
+    "from": 193780,
+    "to": 198360
+   },
+   "text": " text talks about a simple example with short lines for each part of the lesson this synthetic"
+  },
+  {
+   "timestamps": {
+    "from": "00:03:18,360",
+    "to": "00:03:21,560"
+   },
+   "offsets": {
+    "from": 198360,
+    "to": 201560
+   },
+   "text": " test text talks about a simple example with short."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:21,560",
+    "to": "00:03:23,340"
+   },
+   "offsets": {
+    "from": 201560,
+    "to": 203340
+   },
+   "text": " lines for each part."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:23,340",
+    "to": "00:03:27,400"
+   },
+   "offsets": {
+    "from": 203340,
+    "to": 207400
+   },
+   "text": " of the lesson this synthetic test text talks about a simple example with short lines for"
+  },
+  {
+   "timestamps": {
+    "from": "00:03:27,400",
+    "to": "00:03:30,860"
+   },
+   "offsets": {
+    "from": 207400,
+    "to": 210860
+   },
+   "text": " each part of the lesson this synthetic test."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:30,860",
+    "to": "00:03:33,440"
+   },
+   "offsets": {
+    "from": 210860,
+    "to": 213440
+   },
+   "text": " text talks about a simple example with short."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:33,440",
+    "to": "00:03:37,920"
+   },
+   "offsets": {
+    "from": 213440,
+    "to": 217920
+   },
+   "text": " lines for each part of the lesson this synthetic test text talks about a simple example with"
+  },
+  {
+   "timestamps": {
+    "from": "00:03:37,920",
+    "to": "00:03:45,720"
+   },
+   "offsets": {
+    "from": 217920,
+    "to": 225720
+   },
+   "text": " short lines for each."
+  },
+  {
+   "timestamps": {
+    "from": "00:03:45,720",
+    "to": "00:03:47,220"
+   },
+   "offsets": {
+    "from": 225720,
+    "to": 227220
+   },
+   "text": " part of the lesson this."
+  }
+ ]
+}

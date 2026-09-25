@@ -1,0 +1,447 @@
+{
+ "result": {
+  "language": "pt"
+ },
+ "transcription": [
+  {
+   "timestamps": {
+    "from": "00:00:00,000",
+    "to": "00:00:07,640"
+   },
+   "offsets": {
+    "from": 0,
+    "to": 7640
+   },
+   "text": " o texto de teste fala sobre um exemplo simples com frases curtas para cada trecho?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:07,780",
+    "to": "00:00:08,420"
+   },
+   "offsets": {
+    "from": 7780,
+    "to": 8420
+   },
+   "text": " da aula."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:08,500",
+    "to": "00:00:12,840"
+   },
+   "offsets": {
+    "from": 8500,
+    "to": 12840
+   },
+   "text": " o texto de teste fala sobre um exemplo simples com frases curtas para cada trecho da aula?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:13,520",
+    "to": "00:00:18,100"
+   },
+   "offsets": {
+    "from": 13520,
+    "to": 18100
+   },
+   "text": " o texto de teste fala sobre um exemplo simples com frases curtas,"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:19,200",
+    "to": "00:00:22,080"
+   },
+   "offsets": {
+    "from": 19200,
+    "to": 22080
+   },
+   "text": " para cada trecho da aula o texto de teste?"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:22,320",
+    "to": "00:00:26,900"
+   },
+   "offsets": {
+    "from": 22320,
+    "to": 26900
+   },
+   "text": " fala sobre um exemplo simples com frases curtas para cada trecho da aula,"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:27,200",
+    "to": "00:00:29,540"
+   },
+   "offsets": {
+    "from": 27200,
+    "to": 29540
+   },
+   "text": " o texto de teste fala sobre um exemplo simples com frases,"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:30,000",
+    "to": "00:00:34,180"
+   },
+   "offsets": {
+    "from": 30000,
+    "to": 34180
+   },
+   "text": " curtas para cada trecho da aula o texto de teste fala sobre um exemplo simples com frases curtas,"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:34,280",
+    "to": "00:00:36,520"
+   },
+   "offsets": {
+    "from": 34280,
+    "to": 36520
+   },
+   "text": " para cada trecho da aula o texto."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:37,320",
+    "to": "00:00:40,880"
+   },
+   "offsets": {
+    "from": 37320,
+    "to": 40880
+   },
+   "text": " de teste fala sobre um exemplo simples com frases curtas,"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:40,940",
+    "to": "00:00:46,120"
+   },
+   "offsets": {
+    "from": 40940,
+    "to": 46120
+   },
+   "text": " para cada trecho da aula o texto de teste fala sobre um."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:46,120",
+    "to": "00:00:49,540"
+   },
+   "offsets": {
+    "from": 46120,
+    "to": 49540
+   },
+   "text": " exemplo simples com frases curtas para cada trecho."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:50,120",
+    "to": "00:00:53,300"
+   },
+   "offsets": {
+    "from": 50120,
+    "to": 53300
+   },
+   "text": " da aula o texto de teste fala sobre um exemplo simples com,"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:53,900",
+    "to": "00:00:57,460"
+   },
+   "offsets": {
+    "from": 53900,
+    "to": 57460
+   },
+   "text": " frases curtas para cada trecho da aula o texto de teste"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:57,460",
+    "to": "00:00:59,480"
+   },
+   "offsets": {
+    "from": 57460,
+    "to": 59480
+   },
+   "text": " fala sobre um exemplo simples com."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:59,600",
+    "to": "00:00:59,860"
+   },
+   "offsets": {
+    "from": 59600,
+    "to": 59860
+   },
+   "text": " frases curtas."
+  },
+  {
+   "timestamps": {
+    "from": "00:00:59,860",
+    "to": "00:01:00,440"
+   },
+   "offsets": {
+    "from": 59860,
+    "to": 60440
+   },
+   "text": " para cada?"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:00,920",
+    "to": "00:01:03,580"
+   },
+   "offsets": {
+    "from": 60920,
+    "to": 63580
+   },
+   "text": " trecho da aula o texto de teste fala sobre um exemplo simples com."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:03,660",
+    "to": "00:01:04,840"
+   },
+   "offsets": {
+    "from": 63660,
+    "to": 64840
+   },
+   "text": " frases curtas para cada trecho da?"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:04,840",
+    "to": "00:01:05,740"
+   },
+   "offsets": {
+    "from": 64840,
+    "to": 65740
+   },
+   "text": " aula o texto de teste."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:05,880",
+    "to": "00:01:06,940"
+   },
+   "offsets": {
+    "from": 65880,
+    "to": 66940
+   },
+   "text": " fala sobre um exemplo."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:07,460",
+    "to": "00:01:08,520"
+   },
+   "offsets": {
+    "from": 67460,
+    "to": 68520
+   },
+   "text": " simples com frases curtas."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:08,780",
+    "to": "00:01:13,440"
+   },
+   "offsets": {
+    "from": 68780,
+    "to": 73440
+   },
+   "text": " para cada trecho da aula o texto de teste fala sobre um exemplo simples com frases,"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:13,900",
+    "to": "00:01:17,960"
+   },
+   "offsets": {
+    "from": 73900,
+    "to": 77960
+   },
+   "text": " curtas para cada trecho da aula o texto de teste fala sobre um exemplo simples com frases curtas?"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:18,020",
+    "to": "00:01:18,500"
+   },
+   "offsets": {
+    "from": 78020,
+    "to": 78500
+   },
+   "text": " para cada."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:19,000",
+    "to": "00:01:21,440"
+   },
+   "offsets": {
+    "from": 79000,
+    "to": 81440
+   },
+   "text": " trecho da aula o texto de teste fala sobre."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:22,280",
+    "to": "00:01:26,520"
+   },
+   "offsets": {
+    "from": 82280,
+    "to": 86520
+   },
+   "text": " um exemplo simples com frases curtas para cada trecho da aula o texto de,"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:26,740",
+    "to": "00:01:31,780"
+   },
+   "offsets": {
+    "from": 86740,
+    "to": 91780
+   },
+   "text": " teste fala sobre um exemplo simples com frases curtas para cada trecho da aula o."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:31,900",
+    "to": "00:01:33,900"
+   },
+   "offsets": {
+    "from": 91900,
+    "to": 93900
+   },
+   "text": " texto de teste fala sobre um exemplo simples."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:34,360",
+    "to": "00:01:37,940"
+   },
+   "offsets": {
+    "from": 94360,
+    "to": 97940
+   },
+   "text": " com frases curtas para cada trecho da aula o texto de."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:38,180",
+    "to": "00:01:40,680"
+   },
+   "offsets": {
+    "from": 98180,
+    "to": 100680
+   },
+   "text": " teste fala sobre um exemplo simples com frases curtas para cada trecho."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:40,840",
+    "to": "00:01:42,560"
+   },
+   "offsets": {
+    "from": 100840,
+    "to": 102560
+   },
+   "text": " da aula o texto de teste."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:43,280",
+    "to": "00:01:47,760"
+   },
+   "offsets": {
+    "from": 103280,
+    "to": 107760
+   },
+   "text": " fala sobre um exemplo simples com frases curtas para cada trecho da aula o texto de teste fala."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:48,300",
+    "to": "00:01:50,600"
+   },
+   "offsets": {
+    "from": 108300,
+    "to": 110600
+   },
+   "text": " sobre um exemplo simples com frases curtas para?"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:50,980",
+    "to": "00:01:51,380"
+   },
+   "offsets": {
+    "from": 110980,
+    "to": 111380
+   },
+   "text": " cada."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:51,640",
+    "to": "00:01:52,240"
+   },
+   "offsets": {
+    "from": 111640,
+    "to": 112240
+   },
+   "text": " trecho da."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:52,240",
+    "to": "00:01:52,960"
+   },
+   "offsets": {
+    "from": 112240,
+    "to": 112960
+   },
+   "text": " aula o texto de teste fala?"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:52,960",
+    "to": "00:01:53,540"
+   },
+   "offsets": {
+    "from": 112960,
+    "to": 113540
+   },
+   "text": " sobre um exemplo."
+  },
+  {
+   "timestamps": {
+    "from": "00:01:53,720",
+    "to": "00:01:53,980"
+   },
+   "offsets": {
+    "from": 113720,
+    "to": 113980
+   },
+   "text": " simples com?"
+  },
+  {
+   "timestamps": {
+    "from": "00:01:54,300",
+    "to": "00:01:55,120"
+   },
+   "offsets": {
+    "from": 114300,
+    "to": 115120
+   },
+   "text": " frases curtas."
+  }
+ ]
+}

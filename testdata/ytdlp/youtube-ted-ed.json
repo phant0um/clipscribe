@@ -1,0 +1,781 @@
+{
+  "id": "qD0_yWgifDM",
+  "title": "The science of spiciness - Rose Eveleth",
+  "uploader": "TED-Ed",
+  "uploader_id": "@TEDEd",
+  "channel": "TED-Ed",
+  "upload_date": "20140310",
+  "duration": 234,
+  "description": "this synthetic test text\n\ntalks about a simple example with short lines for each part of the lesson this synthetic test text talks about a simple example with short lines for each part of the lesson this synthetic test text talks about a simple example with short lines for each part of the lesson this synthetic test text.\n\ntalks about a simple example with short lines for each.",
+  "webpage_url": "https://www.youtube.com/watch?v=qD0_yWgifDM",
+  "language": "en",
+  "extractor_key": "Youtube",
+  "subtitles": {
+    "ar": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "my": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "ckb": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "zh-CN": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "zh-Hans": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "zh-TW": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "hr": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "nl": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "en": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "fr": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "de": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "el": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "iw": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "id": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "it": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "ja": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "ko": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "ku": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "lv": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "mr": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "fa": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "pl": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "pt-BR": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "pt-PT": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "ro": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "ru": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "sr": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "es": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "es-ES": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "th": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "tr": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "uk": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ],
+    "vi": [
+      {
+        "ext": "json3"
+      },
+      {
+        "ext": "srv1"
+      },
+      {
+        "ext": "srv2"
+      },
+      {
+        "ext": "srv3"
+      },
+      {
+        "ext": "ttml"
+      },
+      {
+        "ext": "srt"
+      },
+      {
+        "ext": "vtt"
+      }
+    ]
+  },
+  "automatic_captions": {
+    "en": [
+      {
+        "ext": "vtt"
+      }
+    ]
+  }
+}

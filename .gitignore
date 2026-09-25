@@ -1,0 +1,7 @@
+/clipscribe
+/bin/
+*.wav
+*.webm
+*.part
+*.tmp
+.DS_Store
