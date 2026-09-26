@@ -2,7 +2,7 @@
 
 **English** · [Português](README.pt-BR.md)
 
-> Version 0.2.0 · 2026-09-26 · Audience: people who use or maintain clipscribe
+> Version 0.2.1 · 2026-09-26 · Audience: people who use or maintain clipscribe
 
 clipscribe transcribes a YouTube or X video and saves the text as a Markdown clipping in the inbox of an Obsidian vault.
 

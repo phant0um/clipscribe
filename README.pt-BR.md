@@ -2,7 +2,7 @@
 
 [English](README.md) · **Português**
 
-> Versão 0.2.0 · 2026-09-26 · Público: quem usa ou mantém o clipscribe
+> Versão 0.2.1 · 2026-09-26 · Público: quem usa ou mantém o clipscribe
 
 clipscribe transcreve um vídeo do YouTube ou do X e grava o texto como clipping Markdown no inbox de um vault Obsidian.
 
