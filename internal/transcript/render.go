@@ -12,6 +12,10 @@ import (
 
 const descriptionLimit = 160
 
+// escapeLinks neutralizes Markdown links, images and wikilinks in
+// uploader-controlled text (security audit 2026-09-26, finding 3).
+var escapeLinks = strings.NewReplacer("[", `\[`, "]", `\]`)
+
 // Doc is everything needed to render one clipping.
 type Doc struct {
 	Video       media.Video
@@ -53,7 +57,7 @@ func RenderMarkdown(d Doc) []byte {
 		if i > 0 {
 			b.WriteString("\n")
 		}
-		fmt.Fprintf(&b, "%s %s\n", stamp(v, p.Start), p.Text)
+		fmt.Fprintf(&b, "%s %s\n", stamp(v, p.Start), escapeLinks.Replace(p.Text))
 	}
 	return b.Bytes()
 }

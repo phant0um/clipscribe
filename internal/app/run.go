@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/phant0um/clipscribe/internal/media"
@@ -144,7 +145,9 @@ func transcribe(ctx context.Context, d Deps, cfg Config, opt options, target med
 			fmt.Fprintln(d.Stdout, p)
 			return ExitOK
 		}
-		existing = p
+		if found && within(p, outDir) {
+			existing = p // replace in place only inside out_dir, never in the archive
+		}
 	}
 
 	tmp, err := os.MkdirTemp(d.TempDir, "clipscribe-")
@@ -315,6 +318,12 @@ func fail(d Deps, err error) int {
 		fmt.Fprintf(d.Stderr, "clipscribe: %v\n", err)
 	}
 	return ExitRuntime
+}
+
+// within reports whether path is inside dir.
+func within(path, dir string) bool {
+	rel, err := filepath.Rel(dir, path)
+	return err == nil && rel != ".." && !strings.HasPrefix(rel, ".."+string(filepath.Separator))
 }
 
 func fileSHA256(path string) (string, error) {

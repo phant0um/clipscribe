@@ -122,3 +122,12 @@ func TestRenderText(t *testing.T) {
 		t.Errorf("got %q", got)
 	}
 }
+
+func TestRenderMarkdownEscapesLinksAndImages(t *testing.T) { // audit finding 3
+	d := doc(media.X)
+	d.Segments = []Segment{seg(0, 2, "veja ![x](https://evil.example/p.png) e [[Nota]]")}
+	got := string(RenderMarkdown(d))
+	if want := `[00:00:00] veja !\[x\](https://evil.example/p.png) e \[\[Nota\]\]`; !strings.Contains(got, want) {
+		t.Errorf("body not escaped:\n%s", got)
+	}
+}

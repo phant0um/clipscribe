@@ -34,7 +34,7 @@ func FileName(v media.Video) string {
 
 func sanitize(s string) string {
 	s = strings.Map(func(r rune) rune {
-		if unicode.IsControl(r) || strings.ContainsRune(forbidden, r) {
+		if unicode.IsControl(r) || unicode.Is(unicode.Cf, r) || strings.ContainsRune(forbidden, r) {
 			return ' '
 		}
 		return r

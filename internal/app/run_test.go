@@ -363,3 +363,29 @@ func TestMissingModel(t *testing.T) {
 		t.Fatalf("exit %d stderr %q", code, e.err)
 	}
 }
+
+func TestForceNeverRewritesArchive(t *testing.T) { // audit finding 2
+	e := newEnv(t, "youtube-pt-nosubs.json")
+	archive := filepath.Join(filepath.Dir(e.outDir), "archive")
+	old := filepath.Join(archive, "2026-09-01", "old.md")
+	os.MkdirAll(filepath.Dir(old), 0o755)
+	stale := "---\nplatform: \"youtube\"\nvideo_id: \"MKU9suCNJQo\"\n---\narchived\n"
+	os.WriteFile(old, []byte(stale), 0o644)
+	cfg := `{"out_dir":"` + e.outDir + `","dedup_dirs":["` + e.outDir + `","` + archive + `"],"model_path":"` + filepath.Join(filepath.Dir(e.outDir), "model.bin") + `"}`
+	os.WriteFile(e.d.ConfigPath, []byte(cfg), 0o600)
+
+	if code := e.run(ptURL); code != ExitOK || strings.TrimSpace(e.out.String()) != old {
+		t.Fatalf("without --force: exit %d stdout %q", code, e.out)
+	}
+	e.out.Reset()
+	if code := e.run(ptURL, "--force"); code != ExitOK {
+		t.Fatalf("exit %d: %s", code, e.err)
+	}
+	if b, _ := os.ReadFile(old); string(b) != stale {
+		t.Error("archived clipping was modified")
+	}
+	p, _ := e.only(t)
+	if strings.TrimSpace(e.out.String()) != p {
+		t.Errorf("stdout %q, want new clipping %q", e.out, p)
+	}
+}

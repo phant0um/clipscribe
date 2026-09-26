@@ -23,6 +23,8 @@ func TestFileName(t *testing.T) {
 			"a b c d"},
 		{"no hidden or relative names", media.Video{Platform: media.YouTube, ID: "id1", Title: "../../etc/passwd"},
 			"etc passwd"},
+		{"invisible and bidi characters removed", media.Video{Platform: media.YouTube, ID: "id1", Title: "abc\u202Egpj.exe\u200Bx"},
+			"abc gpj.exe x"},
 		{"emoji kept", media.Video{Platform: media.YouTube, ID: "id1", Title: "Olá 🚀 mundo"}, "Olá 🚀 mundo"},
 		{"cut at word boundary", media.Video{Platform: media.YouTube, ID: "id1", Title: strings.Repeat("palavra ", 20)},
 			strings.TrimSpace(strings.Repeat("palavra ", 10))},

@@ -65,3 +65,14 @@ func TestDefaultSpecMatchesResearch(t *testing.T) {
 		t.Errorf("spec = %+v", LargeV3Turbo)
 	}
 }
+
+func TestInstallRejectsRedirectToHTTP(t *testing.T) { // audit finding 5
+	s := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "http://example.com/m.bin", http.StatusFound)
+	}))
+	t.Cleanup(s.Close)
+	err := Install(context.Background(), s.Client(), Spec{URL: s.URL, SHA256: modelBytesSHA, Size: 11}, filepath.Join(t.TempDir(), "m.bin"))
+	if err == nil || !strings.Contains(err.Error(), "https") {
+		t.Fatalf("err = %v", err)
+	}
+}

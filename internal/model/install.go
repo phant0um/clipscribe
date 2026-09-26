@@ -5,6 +5,7 @@ import (
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -41,7 +42,17 @@ func Install(ctx context.Context, client *http.Client, spec Spec, dest string) e
 	if err != nil {
 		return err
 	}
-	resp, err := client.Do(req)
+	c := *client
+	c.CheckRedirect = func(r *http.Request, via []*http.Request) error {
+		if r.URL.Scheme != "https" {
+			return errors.New("refusing redirect to non-https URL")
+		}
+		if len(via) >= 10 {
+			return errors.New("too many redirects")
+		}
+		return nil
+	}
+	resp, err := c.Do(req)
 	if err != nil {
 		return fmt.Errorf("download model: %w", err)
 	}
