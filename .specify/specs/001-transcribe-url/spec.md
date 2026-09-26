@@ -1,7 +1,7 @@
 ---
 id: 001
 feature: transcribe-url
-status: implement
+status: verify
 created: 2026-09-25
 ---
 

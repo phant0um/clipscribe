@@ -58,9 +58,9 @@ Checkpoint: todos os ACs das US1–US6 verdes com fakes.
 
 ## Fase 6 — Integração e verificação
 
-- [ ] T070 → T051–T061. Teste com build tag `integration`: vídeo real do YouTube e post real do X (AC1.7, AC2.1). `internal/app/integration_test.go`.
-- [ ] T071 → T070. Rodar `clipscribe` num vídeo real para o vault e confirmar que o F0 do pipeline-drain o detecta (AC8.1).
-- [ ] T072 → T070. `fullstack-security-audit` no repositório. Corrigir achados.
-- [ ] T073 → T072. README e instalação com `content-synthesis`.
-- [ ] T074 → T073. `verify-report.md`: cada AC com PASS, FAIL ou PARTIAL.
+- [x] T070 → T051–T061. Teste com build tag `integration`: vídeo real do YouTube e post real do X (AC1.7, AC2.1). `internal/app/integration_test.go`.
+- [x] T071 → T070. Rodar `clipscribe` num vídeo real para o vault e confirmar que o F0 do pipeline-drain o detecta (AC8.1).
+- [x] T072 → T070. `fullstack-security-audit` no repositório. Corrigir achados.
+- [x] T073 → T072. README e instalação com `content-synthesis`.
+- [x] T074 → T073. `verify-report.md`: cada AC com PASS, FAIL ou PARTIAL.
 - [ ] T075 → T074. `shipping-checklist`.
