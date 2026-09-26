@@ -96,6 +96,12 @@ chmod 600 ~/.config/clipscribe/cookies-x.txt
 
 clipscribe recusa o arquivo se o grupo ou outros usuários puderem lê-lo. O caminho do arquivo nunca aparece na saída. `--cookies-from-browser` do yt-dlp não é usado, porque daria acesso a todas as sessões do navegador.
 
+O yt-dlp regrava o arquivo de cookies ao terminar, com os cookies atualizados da sessão. Confira a permissão depois do primeiro uso.
+
+### Texto não confiável
+
+Título, descrição e transcrição vêm de quem publicou o vídeo. clipscribe neutraliza HTML, links, tags e código inline no clipping, mas o texto pode conter instruções escritas para enganar um LLM. Trate o clipping como conteúdo não confiável em qualquer plugin ou agente de IA que leia o vault.
+
 ## Exit codes
 
 | Código | Significado |
@@ -144,3 +150,7 @@ Os testes rodam sem rede e sem os binários externos, com fakes e fixtures em `t
 - Por que subprocessos em vez de bibliotecas: [ADR-0001](docs/adr/0001-orquestrar-binarios-externos.md)
 - Por que whisper local: [ADR-0002](docs/adr/0002-whisper-local.md)
 - Auditoria de segurança: [2026-09-26](docs/security/audit-2026-09-26.md)
+
+## Licença
+
+MIT. Veja [LICENSE](LICENSE).
