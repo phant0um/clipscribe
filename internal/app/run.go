@@ -133,6 +133,12 @@ func transcribe(ctx context.Context, d Deps, cfg Config, opt options, target med
 	if err != nil {
 		return fail(d, err)
 	}
+	// Metadata comes from yt-dlp and may describe a different video than the
+	// validated URL. Trust only the URL (shield review 2026-09-26, finding 2).
+	if v.Platform != target.Platform || v.ID != target.ID {
+		return fail(d, fmt.Errorf("yt-dlp returned %s %q, want %s %q", v.Platform, v.ID, target.Platform, target.ID))
+	}
+	v.URL = target.URL
 
 	existing := ""
 	if opt.format == "md" {

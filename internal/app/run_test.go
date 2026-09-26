@@ -389,3 +389,25 @@ func TestForceNeverRewritesArchive(t *testing.T) { // audit finding 2
 		t.Errorf("stdout %q, want new clipping %q", e.out, p)
 	}
 }
+
+func TestProbedVideoMustMatchURL(t *testing.T) { // shield 2026-09-26, finding 2
+	e := newEnv(t, "youtube-ted-ed.json")
+	e.f.video.ID = "AAAAAAAAAAA"
+	if code := e.run(tedURL); code != ExitRuntime {
+		t.Fatalf("exit %d", code)
+	}
+	if entries, _ := os.ReadDir(e.outDir); len(entries) != 0 {
+		t.Errorf("unexpected files %v", entries)
+	}
+}
+
+func TestSourceIsTheValidatedURL(t *testing.T) { // shield 2026-09-26, finding 2
+	e := newEnv(t, "youtube-ted-ed.json")
+	e.f.video.URL = "https://evil.example/watch"
+	if code := e.run(tedURL); code != ExitOK {
+		t.Fatalf("exit %d: %s", code, e.err)
+	}
+	if _, body := e.only(t); !strings.Contains(body, `source: "https://www.youtube.com/watch?v=qD0_yWgifDM"`) {
+		t.Errorf("source not from validated URL:\n%s", body[:300])
+	}
+}

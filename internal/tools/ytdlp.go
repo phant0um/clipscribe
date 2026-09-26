@@ -22,7 +22,10 @@ func NewYtDlp(bin string) YtDlp { return YtDlp{Bin: bin, run: execRun} }
 var authMarkers = []string{"sign in to confirm", "requires authentication", "login required", "log in", "private video", "protected"}
 
 func (y YtDlp) call(ctx context.Context, url string, o media.FetchOpts, extra ...string) ([]byte, error) {
-	args := []string{"--ignore-config", "--no-playlist", "--no-progress"}
+	// --use-extractors stops yt-dlp from following links in a post (twitter
+	// url_result, player cards) to hosts outside the allowlist
+	// (shield review 2026-09-26, finding 2).
+	args := []string{"--ignore-config", "--no-playlist", "--no-progress", "--use-extractors", "youtube,twitter"}
 	if o.Cookies != "" {
 		args = append(args, "--cookies", o.Cookies)
 	}

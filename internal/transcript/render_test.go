@@ -131,3 +131,40 @@ func TestRenderMarkdownEscapesLinksAndImages(t *testing.T) { // audit finding 3
 		t.Errorf("body not escaped:\n%s", got)
 	}
 }
+
+func TestRenderMarkdownNeutralizesActiveContent(t *testing.T) { // shield 2026-09-26, finding 1
+	vtt := "WEBVTT\n\n00:00:00.000 --> 00:00:02.000\n" +
+		"hi &lt;img src=\"https://evil.example/p.png\"&gt; &lt;%* await app.vault.adapter.write('pwn.md','x') %&gt; `$= dv.el('b','x')` #injected\n"
+	segs, err := ParseVTT([]byte(vtt))
+	if err != nil {
+		t.Fatal(err)
+	}
+	d := doc(media.X)
+	d.Segments = segs
+	got := string(RenderMarkdown(d))
+	body := got[strings.LastIndex(got, "---\n"):]
+	for _, bad := range []string{"<img", "<%", " `$=", " #injected"} {
+		if strings.Contains(body, bad) {
+			t.Errorf("body keeps %q:\n%s", bad, body)
+		}
+	}
+	if want := `hi &lt;img src="https://evil.example/p.png"&gt; &lt;%* await`; !strings.Contains(body, want) {
+		t.Errorf("body missing %q:\n%s", want, body)
+	}
+	if want := "\\`$= dv.el('b','x')\\` \\#injected"; !strings.Contains(body, want) {
+		t.Errorf("body missing %q:\n%s", want, body)
+	}
+}
+
+func TestRenderMarkdownFrontmatterHasNoLinks(t *testing.T) { // shield 2026-09-26, finding 3
+	d := doc(media.YouTube)
+	d.Video.Author = "Chan]] [[Evil|x"
+	d.Video.Title = "see [[Secret Note]]"
+	d.Video.Description = "and [[Other]]"
+	got := string(RenderMarkdown(d))
+	for _, want := range []string{`- "[[Chan Evil x]]"`, `title: "see \\[\\[Secret Note\\]\\]"`, `description: "and \\[\\[Other\\]\\]"`} {
+		if !strings.Contains(got, want) {
+			t.Errorf("missing %s in:\n%s", want, got)
+		}
+	}
+}

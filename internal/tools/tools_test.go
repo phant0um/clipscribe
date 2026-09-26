@@ -49,7 +49,7 @@ func TestYtDlpProbeArgs(t *testing.T) {
 	if err != nil || v.ID != "qD0_yWgifDM" {
 		t.Fatalf("v=%+v err=%v", v, err)
 	}
-	want := []string{"--ignore-config", "--no-playlist", "--no-progress", "--dump-single-json", "--", "https://www.youtube.com/watch?v=qD0_yWgifDM"}
+	want := []string{"--ignore-config", "--no-playlist", "--no-progress", "--use-extractors", "youtube,twitter", "--dump-single-json", "--", "https://www.youtube.com/watch?v=qD0_yWgifDM"}
 	if !reflect.DeepEqual(r.calls[0].args, want) {
 		t.Errorf("args = %q\nwant  %q", r.calls[0].args, want)
 	}

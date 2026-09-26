@@ -16,6 +16,23 @@ const descriptionLimit = 160
 // uploader-controlled text (security audit 2026-09-26, finding 3).
 var escapeLinks = strings.NewReplacer("[", `\[`, "]", `\]`)
 
+// escapeBody also neutralizes raw HTML, Templater tags, inline code
+// (Dataview JS) and tags in uploader-controlled body text. Entities in
+// captions are decoded before this point, so the escape must happen here
+// (shield review 2026-09-26, finding 1).
+var escapeBody = strings.NewReplacer("[", `\[`, "]", `\]`, "<", "&lt;", ">", "&gt;", "`", "\\`", "#", `\#`)
+
+// linkName makes an uploader name safe inside a [[wikilink]]
+// (shield review 2026-09-26, finding 3).
+func linkName(s string) string {
+	return strings.Join(strings.Fields(strings.Map(func(r rune) rune {
+		if r == '[' || r == ']' || r == '|' {
+			return ' '
+		}
+		return r
+	}, s)), " ")
+}
+
 // Doc is everything needed to render one clipping.
 type Doc struct {
 	Video       media.Video
@@ -31,19 +48,19 @@ type Doc struct {
 func RenderMarkdown(d Doc) []byte {
 	var b bytes.Buffer
 	v := d.Video
-	author := "[[" + v.Author + "]]"
+	author := "[[" + linkName(v.Author) + "]]"
 	if v.Platform == media.X {
-		author = "[[@" + v.Author + "]]"
+		author = "[[@" + linkName(v.Author) + "]]"
 	}
 	b.WriteString("---\n")
-	fmt.Fprintf(&b, "title: %s\n", quote(v.Title))
+	fmt.Fprintf(&b, "title: %s\n", quote(escapeLinks.Replace(v.Title)))
 	fmt.Fprintf(&b, "source: %s\n", quote(v.URL))
 	fmt.Fprintf(&b, "author:\n  - %s\n", quote(author))
 	if !v.Published.IsZero() {
 		fmt.Fprintf(&b, "published: %s\n", v.Published.Format(time.DateOnly))
 	}
 	fmt.Fprintf(&b, "created: %s\n", d.Created.Format(time.DateOnly))
-	fmt.Fprintf(&b, "description: %s\n", quote(description(d)))
+	fmt.Fprintf(&b, "description: %s\n", quote(escapeLinks.Replace(description(d))))
 	fmt.Fprintf(&b, "platform: %s\n", quote(string(v.Platform)))
 	fmt.Fprintf(&b, "video_id: %s\n", quote(v.ID))
 	fmt.Fprintf(&b, "duration: %s\n", quote(clock(v.Duration)))
@@ -57,7 +74,7 @@ func RenderMarkdown(d Doc) []byte {
 		if i > 0 {
 			b.WriteString("\n")
 		}
-		fmt.Fprintf(&b, "%s %s\n", stamp(v, p.Start), escapeLinks.Replace(p.Text))
+		fmt.Fprintf(&b, "%s %s\n", stamp(v, p.Start), escapeBody.Replace(p.Text))
 	}
 	return b.Bytes()
 }
