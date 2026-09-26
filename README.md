@@ -1,129 +1,133 @@
 # clipscribe
 
-> Versão 0.2.0 · 2026-09-26 · Público: quem usa ou mantém o clipscribe
+**English** · [Português](README.pt-BR.md)
 
-clipscribe transcreve um vídeo do YouTube ou do X e grava o texto como clipping Markdown no inbox de um vault Obsidian.
+> Version 0.2.0 · 2026-09-26 · Audience: people who use or maintain clipscribe
 
-O clipping segue o schema do Obsidian Web Clipper. O pipeline do vault ingere esse arquivo como qualquer outro clipping.
+clipscribe transcribes a YouTube or X video and saves the text as a Markdown clipping in the inbox of an Obsidian vault.
 
-## O que faz
+The clipping follows the Obsidian Web Clipper schema, so a vault pipeline can ingest it like any other clipping.
 
-- Aceita uma URL `https` de `youtube.com`, `youtu.be`, `x.com` ou `twitter.com`. Qualquer outra URL sai com exit 2.
-- Usa a legenda manual do YouTube quando ela está no idioma falado do vídeo. Legenda automática e legenda traduzida são ignoradas.
-- Sem legenda manual, baixa o áudio e transcreve localmente com whisper.cpp e o modelo `large-v3-turbo`.
-- Agrupa a fala em parágrafos com timestamp. No YouTube, o timestamp é um link para o ponto do vídeo.
-- Pula vídeos já transcritos, procurando `platform` e `video_id` no frontmatter do inbox e do archive.
-- Grava de forma atômica. O pipeline nunca vê um clipping pela metade.
-- Recusa live e vídeo com mais de 4 h. No YouTube, o download de áudio tem teto de 4 GB. No X, o áudio vem em HLS e o yt-dlp não aplica esse teto; o limite ali é só a duração.
+## What it does
 
-## Requisitos
+- Accepts an `https` URL from `youtube.com`, `youtu.be`, `x.com` or `twitter.com`. Any other URL exits with code 2.
+- Uses the YouTube manual captions when they are in the spoken language of the video. Automatic and translated captions are ignored.
+- Without manual captions, downloads the audio and transcribes it locally with whisper.cpp and the `large-v3-turbo` model.
+- Groups speech into paragraphs with timestamps. On YouTube, each timestamp links to that point in the video.
+- Skips videos already transcribed, by matching `platform` and `video_id` in the frontmatter of the inbox and archive.
+- Writes atomically. The pipeline never sees a half-written clipping.
+- Refuses live streams and videos longer than 4 h. On YouTube, the audio download is capped at 4 GB. On X, the audio comes as HLS and yt-dlp does not apply that cap, so duration is the only limit there.
 
-- macOS em Apple Silicon.
-- Go 1.26.6 ou mais novo, só para compilar.
-- `yt-dlp`, `ffmpeg` e `whisper-cli`, via Homebrew.
-- ~1,6 GB de disco para o modelo.
+## Requirements
 
-## Instalação
+- macOS on Apple Silicon.
+- Go 1.26.6 or newer, only to build.
+- `yt-dlp`, `ffmpeg` and `whisper-cli`, from Homebrew.
+- About 1.6 GB of disk for the model.
+
+## Installation
 
 ```bash
 brew install yt-dlp ffmpeg whisper-cpp
 ```
 
-Com o repositório publicado no GitHub:
-
 ```bash
 go install github.com/phant0um/clipscribe/cmd/clipscribe@latest
 ```
 
-Antes disso, a partir do clone local:
+The binary goes to `~/go/bin`. If the shell says `command not found`, add that folder to your PATH:
 
 ```bash
-make build
+echo 'export PATH="$HOME/go/bin:$PATH"' >> ~/.zshrc
 ```
+
+From a local clone, `make build` builds `./clipscribe`.
 
 ```bash
 clipscribe doctor --install-model
 ```
 
-`doctor --install-model` baixa o modelo do Hugging Face, confere tamanho e SHA-256 e só então grava em `~/.local/share/clipscribe/models/`.
+`doctor --install-model` downloads the model from Hugging Face, checks its size and SHA-256, and only then saves it to `~/.local/share/clipscribe/models/`.
 
-## Configuração
+## Configuration
 
-Crie `~/.config/clipscribe/config.json`:
+Create `~/.config/clipscribe/config.json`:
 
 ```json
 {
-  "out_dir": "~/Obsidian/meu-vault/00-INBOX/clippings",
+  "out_dir": "~/Obsidian/my-vault/00-INBOX/clippings",
   "dedup_dirs": [
-    "~/Obsidian/meu-vault/00-INBOX/clippings",
-    "~/Obsidian/meu-vault/08-ARCHIVE/approved",
-    "~/Obsidian/meu-vault/08-ARCHIVE/disapproved"
+    "~/Obsidian/my-vault/00-INBOX/clippings",
+    "~/Obsidian/my-vault/08-ARCHIVE/approved",
+    "~/Obsidian/my-vault/08-ARCHIVE/disapproved"
   ]
 }
 ```
 
-| Campo | Uso | Padrão |
+| Field | Use | Default |
 |---|---|---|
-| `out_dir` | Onde os clippings `md` são gravados | nenhum; sem ele, `md` exige `--out` |
-| `dedup_dirs` | Pastas onde procurar um clipping do mesmo vídeo | `[out_dir]` |
-| `model_path` | Caminho do modelo whisper | `~/.local/share/clipscribe/models/ggml-large-v3-turbo.bin` |
+| `out_dir` | Where `md` clippings are saved | none; without it, `md` needs `--out` |
+| `dedup_dirs` | Folders searched for a clipping of the same video | `[out_dir]` |
+| `model_path` | Path of the whisper model | `~/.local/share/clipscribe/models/ggml-large-v3-turbo.bin` |
 
-Rode `clipscribe doctor` para conferir dependências, modelo e config.
+Run `clipscribe doctor` to check dependencies, model and config.
 
-## Uso
+## Usage
 
 ```bash
 clipscribe "https://www.youtube.com/watch?v=qD0_yWgifDM"
 ```
 
-O progresso vai para stderr. O stdout recebe só o caminho do arquivo gerado.
+Quote the URL: zsh treats `?` and `&` as special characters.
 
-| Flag | Efeito |
+Progress goes to stderr. Stdout gets only the path of the file written.
+
+| Flag | Effect |
 |---|---|
-| `--lang auto\|pt\|en` | Idioma **falado** no vídeo. Padrão `auto`. clipscribe não traduz. |
-| `--format md\|srt\|txt` | Formato de saída. `srt` e `txt` vão para o diretório atual, salvo `--out`. |
-| `--out <dir>` | Diretório de saída. |
-| `--force` | Transcreve de novo um vídeo já existente. Substitui o clipping no inbox; nunca altera o archive. |
-| `--keep-audio` | Mantém o WAV temporário e mostra o caminho. |
-| `--cookies <arquivo>` | Arquivo de cookies dedicado, para vídeo que exige login. |
+| `--lang auto\|pt\|en` | **Spoken** language of the video. Default `auto`. clipscribe does not translate. |
+| `--format md\|srt\|txt` | Output format. `srt` and `txt` go to the current directory unless `--out` is set. |
+| `--out <dir>` | Output directory. |
+| `--force` | Transcribes a video again. Replaces the clipping in the inbox; never changes the archive. |
+| `--keep-audio` | Keeps the temporary WAV and prints its path. |
+| `--cookies <file>` | Dedicated cookie file, for videos that need a login. |
 
-### Vídeo que exige login
+### Videos that need a login
 
-Por padrão, clipscribe só baixa vídeo público. Para vídeo com login, exporte um arquivo de cookies no formato Netscape. O arquivo deve conter só `x.com` ou `youtube.com`, de preferência de uma conta secundária. Depois, restrinja a permissão:
+By default, clipscribe only downloads public videos. For a video behind a login, export a cookie file in Netscape format. The file should contain only `x.com` or `youtube.com`, preferably from a secondary account. Then restrict its permissions:
 
 ```bash
 chmod 600 ~/.config/clipscribe/cookies-x.txt
 ```
 
-clipscribe recusa o arquivo se o grupo ou outros usuários puderem lê-lo. O caminho do arquivo nunca aparece na saída. `--cookies-from-browser` do yt-dlp não é usado, porque daria acesso a todas as sessões do navegador.
+clipscribe refuses the file if its group or other users can read it. The file path never appears in the output. yt-dlp's `--cookies-from-browser` is not used, because it would expose every browser session.
 
-O yt-dlp regrava o arquivo de cookies ao terminar, com os cookies atualizados da sessão. Confira a permissão depois do primeiro uso.
+yt-dlp rewrites the cookie file when it finishes, with the session's updated cookies. Check the permissions after the first use.
 
-### Texto não confiável
+### Untrusted text
 
-Título, descrição e transcrição vêm de quem publicou o vídeo. clipscribe neutraliza HTML, links, tags e código inline no clipping, mas o texto pode conter instruções escritas para enganar um LLM. Trate o clipping como conteúdo não confiável em qualquer plugin ou agente de IA que leia o vault.
+Title, description and transcript come from whoever published the video. clipscribe neutralizes HTML, links, tags and inline code in the clipping, but the text can still contain instructions written to mislead an LLM. Treat clippings as untrusted content in any AI plugin or agent that reads the vault.
 
 ## Exit codes
 
-| Código | Significado |
+| Code | Meaning |
 |---|---|
-| 0 | Sucesso, ou vídeo já transcrito |
-| 1 | Erro de execução: rede, vídeo indisponível, login exigido, hash do modelo divergente |
-| 2 | Uso inválido: flag, URL fora da allowlist, cookie file com permissão aberta |
-| 3 | Dependência ausente: `yt-dlp`, `ffmpeg`, `whisper-cli` ou modelo |
+| 0 | Success, or video already transcribed |
+| 1 | Runtime error: network, video unavailable, login required, model hash mismatch |
+| 2 | Invalid usage: flag, URL outside the allowlist, cookie file readable by others |
+| 3 | Missing dependency: `yt-dlp`, `ffmpeg`, `whisper-cli` or model |
 
-## Desempenho
+## Performance
 
-Medido num Apple M5 Pro com `large-v3-turbo`:
+Measured on an Apple M5 Pro with `large-v3-turbo`:
 
-| Etapa | Áudio PT de 57 min |
+| Step | 57 min of Portuguese audio |
 |---|---|
-| `ffmpeg` para WAV 16 kHz | 4,9 s |
+| `ffmpeg` to 16 kHz WAV | 4.9 s |
 | `whisper-cli` | 113 s |
 
-O download depende da rede. No mesmo teste, o YouTube levou ~3 min para entregar 51 MB.
+Download time depends on the network. In the same test, YouTube took about 3 min to deliver 51 MB.
 
-## Desenvolvimento
+## Development
 
 ```bash
 make test
@@ -133,25 +137,27 @@ make test
 make lint
 ```
 
-Os testes rodam sem rede e sem os binários externos, com fakes e fixtures em `testdata/`. O projeto não tem dependências Go fora da stdlib.
+Tests run offline and without the external binaries, using fakes and fixtures in `testdata/`. The project has no Go dependencies outside the standard library.
 
-| Pacote | Responsabilidade |
+| Package | Responsibility |
 |---|---|
-| `internal/app` | Flags, config, orquestração, `doctor` |
-| `internal/media` | Allowlist de URL, metadados do yt-dlp |
-| `internal/tools` | Adapters de `yt-dlp`, `ffmpeg` e `whisper-cli` |
-| `internal/transcript` | Parsers de VTT e whisper, parágrafos, render |
-| `internal/vault` | Nome de arquivo, escrita atômica, dedup |
-| `internal/model` | Download verificado do modelo |
+| `internal/app` | Flags, config, orchestration, `doctor` |
+| `internal/media` | URL allowlist, yt-dlp metadata |
+| `internal/tools` | Adapters for `yt-dlp`, `ffmpeg` and `whisper-cli` |
+| `internal/transcript` | VTT and whisper parsers, paragraphs, rendering |
+| `internal/vault` | File names, atomic writes, dedup |
+| `internal/model` | Verified model download |
 
-## Documentos
+## Documents
 
-- Regras do projeto: [constitution](.specify/memory/constitution.md)
-- Spec da v1: [spec 001](.specify/specs/001-transcribe-url/spec.md)
-- Por que subprocessos em vez de bibliotecas: [ADR-0001](docs/adr/0001-orquestrar-binarios-externos.md)
-- Por que whisper local: [ADR-0002](docs/adr/0002-whisper-local.md)
-- Auditoria de segurança: [2026-09-26](docs/security/audit-2026-09-26.md)
+The spec and ADRs are in Portuguese. The security audit is in English.
 
-## Licença
+- Project rules: [constitution](.specify/memory/constitution.md)
+- v1 spec: [spec 001](.specify/specs/001-transcribe-url/spec.md)
+- Why subprocesses instead of libraries: [ADR-0001](docs/adr/0001-orquestrar-binarios-externos.md)
+- Why local whisper: [ADR-0002](docs/adr/0002-whisper-local.md)
+- Security audit: [2026-09-26](docs/security/audit-2026-09-26.md)
 
-MIT. Veja [LICENSE](LICENSE).
+## License
+
+MIT. See [LICENSE](LICENSE).
