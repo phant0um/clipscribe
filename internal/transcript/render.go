@@ -19,8 +19,9 @@ var escapeLinks = strings.NewReplacer("[", `\[`, "]", `\]`)
 // escapeBody also neutralizes raw HTML, Templater tags, inline code
 // (Dataview JS) and tags in uploader-controlled body text. Entities in
 // captions are decoded before this point, so the escape must happen here
-// (shield review 2026-09-26, finding 1).
-var escapeBody = strings.NewReplacer("[", `\[`, "]", `\]`, "<", "&lt;", ">", "&gt;", "`", "\\`", "#", `\#`)
+// (shield review 2026-09-26, finding 1). The backslash goes first, or an
+// uploader \ turns the next escape into a literal and reopens the syntax.
+var escapeBody = strings.NewReplacer(`\`, `\\`, "[", `\[`, "]", `\]`, "<", "&lt;", ">", "&gt;", "`", "\\`", "#", `\#`)
 
 // linkName makes an uploader name safe inside a [[wikilink]]
 // (shield review 2026-09-26, finding 3).

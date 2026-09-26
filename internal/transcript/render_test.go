@@ -168,3 +168,18 @@ func TestRenderMarkdownFrontmatterHasNoLinks(t *testing.T) { // shield 2026-09-2
 		}
 	}
 }
+
+func TestRenderMarkdownBackslashCannotReopenSyntax(t *testing.T) { // shield re-review 2026-09-26
+	vtt := "WEBVTT\n\n00:00:00.000 --> 00:00:02.000\n" +
+		"\\[x\\](https://e) \\`$= x;//` &#92;#t\n"
+	segs, err := ParseVTT([]byte(vtt))
+	if err != nil {
+		t.Fatal(err)
+	}
+	d := doc(media.X)
+	d.Segments = segs
+	got := string(RenderMarkdown(d))
+	if want := "\\\\\\[x\\\\\\](https://e) \\\\\\`$= x;//\\` \\\\\\#t"; !strings.Contains(got, want) {
+		t.Errorf("backslash not escaped, want %s in:\n%s", want, got)
+	}
+}
