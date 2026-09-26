@@ -40,6 +40,7 @@ Os itens marcados como "confirmar no spike" dependem das ASSUMPTIONS 1–3 da sp
 Achados do spike (2026-09-25):
 - `--sub-langs pt.*` baixaria `pt-BR` e `pt-PT`. clipscribe escolhe o código exato a partir de `subtitles` e passa só ele.
 - O JSON completo do `yt-dlp` tem ~780 KB e inclui URLs assinadas do `googlevideo.com` com o IP de quem baixou. Fixtures em `testdata/` guardam só os campos usados. Nunca commitar o JSON bruto.
+- Antes da publicação, o texto falado das legendas, das transcrições do whisper e das descrições foi trocado por texto sintético. Tempos, estrutura, IDs e títulos são os reais. Assim o repo MIT não carrega texto de terceiros.
 - O campo `language` existe (`en` no vídeo TED-Ed) e identifica o idioma falado.
 
 ### ffmpeg

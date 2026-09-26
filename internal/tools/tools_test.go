@@ -161,7 +161,7 @@ func TestWhisperArgsAndOutput(t *testing.T) {
 	w := Whisper{Bin: "whisper-cli", Model: "/m/model.bin", run: r.run}
 	wav := filepath.Join(t.TempDir(), "audio.wav")
 	segs, lang, err := w.Transcribe(context.Background(), wav, "auto")
-	if err != nil || lang != "pt" || len(segs) != 40 || segs[1].Text != "Teve, teve." {
+	if err != nil || lang != "pt" || len(segs) != 40 || segs[1].Text != "da aula." {
 		t.Fatalf("lang=%q n=%d err=%v", lang, len(segs), err)
 	}
 	args := r.calls[0].args

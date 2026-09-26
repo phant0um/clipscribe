@@ -25,10 +25,10 @@ func TestParseVTT(t *testing.T) {
 		t.Fatalf("got %d segments", len(segs))
 	}
 	s := segs[1]
-	if s.Start != 6951*time.Millisecond || s.End != 8951*time.Millisecond || s.Text != "Por que sua boca parece queimar" {
+	if s.Start != 6951*time.Millisecond || s.End != 8951*time.Millisecond || s.Text != "exemplo simples com frases curtas para" {
 		t.Errorf("segs[1] = %+v", s)
 	}
-	if segs[2].Text != "quando você come uma pimenta ardida?" {
+	if segs[2].Text != "cada trecho da aula o texto?" {
 		t.Errorf("multi-line cue = %q", segs[2].Text)
 	}
 }
@@ -58,7 +58,7 @@ func TestParseWhisperJSON(t *testing.T) {
 	if lang != "en" || len(segs) != 61 {
 		t.Fatalf("lang=%q n=%d", lang, len(segs))
 	}
-	if segs[1].Start != 11080*time.Millisecond || segs[1].End != 12820*time.Millisecond || segs[1].Text != "And how do you soothe the burn?" {
+	if segs[1].Start != 11080*time.Millisecond || segs[1].End != 12820*time.Millisecond || segs[1].Text != "of the lesson this synthetic test text?" {
 		t.Errorf("segs[1] = %+v", segs[1])
 	}
 	for _, s := range segs {
@@ -70,7 +70,7 @@ func TestParseWhisperJSON(t *testing.T) {
 
 func TestParseWhisperJSONPortuguese(t *testing.T) {
 	segs, lang, err := ParseWhisperJSON(fixture(t, "whisper/pt-sacani.json"))
-	if err != nil || lang != "pt" || segs[1].Text != "Teve, teve." {
+	if err != nil || lang != "pt" || segs[1].Text != "da aula." {
 		t.Fatalf("lang=%q seg=%q err=%v", lang, segs[1].Text, err)
 	}
 }
