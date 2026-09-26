@@ -20,9 +20,14 @@ func NewWhisper(bin, model string) Whisper { return Whisper{Bin: bin, Model: mod
 
 // Transcribe runs whisper-cli on wav. lang is "auto", "pt" or "en"; it is
 // always passed explicitly because whisper-cli defaults to English.
-func (w Whisper) Transcribe(ctx context.Context, wav, lang string) ([]transcript.Segment, string, error) {
+// prompt, when not empty, biases the spelling of names in the audio.
+func (w Whisper) Transcribe(ctx context.Context, wav, lang, prompt string) ([]transcript.Segment, string, error) {
 	base := filepath.Join(filepath.Dir(wav), "whisper")
-	if _, err := w.run(ctx, w.Bin, "-m", w.Model, "-f", wav, "-l", lang, "-oj", "-of", base, "-np"); err != nil {
+	args := []string{"-m", w.Model, "-f", wav, "-l", lang, "-oj", "-of", base, "-np"}
+	if prompt != "" {
+		args = append(args, "--prompt", prompt)
+	}
+	if _, err := w.run(ctx, w.Bin, args...); err != nil {
 		return nil, "", err
 	}
 	b, err := os.ReadFile(base + ".json")

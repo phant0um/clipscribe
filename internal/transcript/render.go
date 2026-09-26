@@ -54,14 +54,14 @@ func RenderMarkdown(d Doc) []byte {
 		author = "[[@" + linkName(v.Author) + "]]"
 	}
 	b.WriteString("---\n")
-	fmt.Fprintf(&b, "title: %s\n", quote(escapeLinks.Replace(v.Title)))
+	fmt.Fprintf(&b, "title: %s\n", quote(plainField(title(v))))
 	fmt.Fprintf(&b, "source: %s\n", quote(v.URL))
 	fmt.Fprintf(&b, "author:\n  - %s\n", quote(author))
 	if !v.Published.IsZero() {
 		fmt.Fprintf(&b, "published: %s\n", v.Published.Format(time.DateOnly))
 	}
 	fmt.Fprintf(&b, "created: %s\n", d.Created.Format(time.DateOnly))
-	fmt.Fprintf(&b, "description: %s\n", quote(escapeLinks.Replace(description(d))))
+	fmt.Fprintf(&b, "description: %s\n", quote(plainField(description(d))))
 	fmt.Fprintf(&b, "platform: %s\n", quote(string(v.Platform)))
 	fmt.Fprintf(&b, "video_id: %s\n", quote(v.ID))
 	fmt.Fprintf(&b, "duration: %s\n", quote(clock(v.Duration)))
@@ -107,6 +107,36 @@ func stamp(v media.Video, at time.Duration) string {
 		return fmt.Sprintf("[%s](https://youtu.be/%s?t=%d)", c, v.ID, int(at.Seconds()))
 	}
 	return "[" + c + "]"
+}
+
+// plainField keeps frontmatter values plain text if a plugin renders them
+// as Markdown: no links, no HTML, no inline code (shield review 2026-09-26).
+func plainField(s string) string {
+	return escapeLinks.Replace(dropActive.Replace(s))
+}
+
+var dropActive = strings.NewReplacer("<", "", ">", "", "`", "")
+
+const titleLimit = 100
+
+// title is the post text on X, whose yt-dlp title is "name - text" cut at a
+// fixed length. It is the first line, cut at a word boundary.
+func title(v media.Video) string {
+	if v.Platform != media.X {
+		return v.Title
+	}
+	line, _, _ := strings.Cut(strings.TrimSpace(v.Description), "\n")
+	line = strings.Join(strings.Fields(line), " ")
+	if line == "" {
+		return v.Title
+	}
+	if r := []rune(line); len(r) > titleLimit {
+		line = string(r[:titleLimit])
+		if i := strings.LastIndex(line, " "); i > 0 {
+			line = line[:i]
+		}
+	}
+	return line
 }
 
 func description(d Doc) string {

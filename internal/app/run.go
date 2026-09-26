@@ -14,6 +14,7 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+	"unicode"
 
 	"github.com/phant0um/clipscribe/internal/media"
 	"github.com/phant0um/clipscribe/internal/model"
@@ -28,6 +29,9 @@ const (
 	ExitUsage   = 2
 	ExitMissing = 3
 )
+
+// maxDuration bounds download size and transcription time.
+const maxDuration = 4 * time.Hour
 
 const (
 	transcriberCaptions = "captions-manual"
@@ -55,7 +59,7 @@ type AudioConverter interface {
 
 // Transcriber wraps whisper-cli.
 type Transcriber interface {
-	Transcribe(ctx context.Context, wav, lang string) ([]transcript.Segment, string, error)
+	Transcribe(ctx context.Context, wav, lang, prompt string) ([]transcript.Segment, string, error)
 }
 
 // Deps holds everything Run needs from the outside world.
@@ -139,6 +143,13 @@ func transcribe(ctx context.Context, d Deps, cfg Config, opt options, target med
 		return fail(d, fmt.Errorf("yt-dlp returned %s %q, want %s %q", v.Platform, v.ID, target.Platform, target.ID))
 	}
 	v.URL = target.URL
+	if v.Live {
+		return fail(d, errors.New("live streams are not supported; try again after the stream ends"))
+	}
+	if v.Duration > maxDuration {
+		return fail(d, fmt.Errorf("video is %s long; the limit is %s", v.Duration, maxDuration))
+	}
+	fo.ExpectID = target.ID
 
 	existing := ""
 	if opt.format == "md" {
@@ -176,7 +187,7 @@ func transcribe(ctx context.Context, d Deps, cfg Config, opt options, target med
 		doc.Segments, err = captions(ctx, d, target.URL, code, tmp, fo)
 		doc.Lang, doc.Transcriber = spoken, transcriberCaptions
 	} else {
-		doc.Segments, doc.Lang, doc.AudioSHA256, err = whisper(ctx, d, target.URL, opt.lang, tmp, fo)
+		doc.Segments, doc.Lang, doc.AudioSHA256, err = whisper(ctx, d, target.URL, opt.lang, whisperPrompt(v), tmp, fo)
 		doc.Transcriber = transcriberWhisper
 	}
 	if err != nil {
@@ -206,7 +217,7 @@ func captions(ctx context.Context, d Deps, url, code, dir string, fo FetchOpts) 
 	return transcript.ParseVTT(b)
 }
 
-func whisper(ctx context.Context, d Deps, url, lang, dir string, fo FetchOpts) ([]transcript.Segment, string, string, error) {
+func whisper(ctx context.Context, d Deps, url, lang, prompt, dir string, fo FetchOpts) ([]transcript.Segment, string, string, error) {
 	fmt.Fprintln(d.Stderr, "downloading audio")
 	audio, err := d.Downloader.FetchAudio(ctx, url, dir, fo)
 	if err != nil {
@@ -221,7 +232,7 @@ func whisper(ctx context.Context, d Deps, url, lang, dir string, fo FetchOpts) (
 		return nil, "", "", err
 	}
 	fmt.Fprintln(d.Stderr, "transcribing")
-	segs, detected, err := d.Transcriber.Transcribe(ctx, wav, lang)
+	segs, detected, err := d.Transcriber.Transcribe(ctx, wav, lang, prompt)
 	return segs, detected, sum, err
 }
 
@@ -343,4 +354,24 @@ func fileSHA256(path string) (string, error) {
 		return "", err
 	}
 	return hex.EncodeToString(h.Sum(nil)), nil
+}
+
+// whisperPrompt gives whisper the names it is likely to hear, so it spells
+// them right. The text is uploader-controlled; it only biases transcription
+// of the same uploader's audio.
+func whisperPrompt(v media.Video) string {
+	s := "@" + v.Author
+	if v.Platform == media.YouTube {
+		s = v.Title + ". " + v.Author + "."
+	}
+	s = strings.Join(strings.Fields(strings.Map(func(r rune) rune {
+		if unicode.IsControl(r) {
+			return ' '
+		}
+		return r
+	}, s)), " ")
+	if r := []rune(s); len(r) > 200 {
+		s = string(r[:200])
+	}
+	return s
 }

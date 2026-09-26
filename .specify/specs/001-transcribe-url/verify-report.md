@@ -52,6 +52,8 @@ Evidência base:
 
 ## Observações para a v1.1
 
+Feitas em 2026-09-26: título do X vem do texto do post, o Whisper recebe `--prompt` com os nomes (`@handle` no X, título e canal no YouTube), e os itens de segurança S5 e do re-review estão resolvidos. Continua aberta a ASSUMPTION 4.
+
 - Tempo real do post do X: 648 s de ponta a ponta. A maior parte foi o download HLS do X (~270 KB/s). O Whisper levou cerca de 80 s.
 - O `title` do X vem truncado pelo `yt-dlp` (`"lauren - here's how ... ori..."`). Usar `description` como título no X deixaria o frontmatter mais útil.
 - O Whisper errou nomes próprios no post do X (o handle `poteto` virou outra palavra). Um `--prompt` com o nome do autor pode ajudar.

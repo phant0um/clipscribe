@@ -20,6 +20,7 @@ type Video struct {
 	Description string
 	Language    string   // spoken language; empty when unknown
 	ManualSubs  []string // languages with human-made captions, sorted
+	Live        bool     // live now or scheduled; the audio would never end
 }
 
 type ytdlpJSON struct {
@@ -35,6 +36,8 @@ type ytdlpJSON struct {
 	WebpageURL   string           `json:"webpage_url"`
 	Language     string           `json:"language"`
 	ExtractorKey string           `json:"extractor_key"`
+	IsLive       bool             `json:"is_live"`
+	LiveStatus   string           `json:"live_status"`
 	Subtitles    map[string][]any `json:"subtitles"`
 }
 
@@ -51,6 +54,7 @@ func ParseVideo(data []byte) (Video, error) {
 		Duration:    time.Duration(j.Duration * float64(time.Second)),
 		Description: j.Description,
 		Language:    j.Language,
+		Live:        j.IsLive || j.LiveStatus == "is_live" || j.LiveStatus == "is_upcoming",
 	}
 	switch j.ExtractorKey {
 	case "Youtube":

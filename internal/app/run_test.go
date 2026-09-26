@@ -31,7 +31,9 @@ type fakes struct {
 	captions  []string
 	audio     int
 	transLang string
+	prompt    string
 	cookies   []string
+	expectIDs []string
 }
 
 func (f *fakes) Probe(ctx context.Context, url string, o FetchOpts) (media.Video, error) {
@@ -42,6 +44,7 @@ func (f *fakes) Probe(ctx context.Context, url string, o FetchOpts) (media.Video
 
 func (f *fakes) FetchCaptions(ctx context.Context, url, lang, dir string, o FetchOpts) (string, error) {
 	f.captions = append(f.captions, lang)
+	f.expectIDs = append(f.expectIDs, o.ExpectID)
 	b, err := os.ReadFile("../../testdata/captions/qD0_yWgifDM.pt-BR.vtt")
 	if err != nil {
 		return "", err
@@ -52,6 +55,7 @@ func (f *fakes) FetchCaptions(ctx context.Context, url, lang, dir string, o Fetc
 
 func (f *fakes) FetchAudio(ctx context.Context, url, dir string, o FetchOpts) (string, error) {
 	f.audio++
+	f.expectIDs = append(f.expectIDs, o.ExpectID)
 	p := filepath.Join(dir, "audio.webm")
 	return p, os.WriteFile(p, []byte("webm"), 0o600)
 }
@@ -60,8 +64,9 @@ func (f *fakes) ToWAV16k(ctx context.Context, in, out string) error {
 	return os.WriteFile(out, []byte("fake wav"), 0o600)
 }
 
-func (f *fakes) Transcribe(ctx context.Context, wav, lang string) ([]transcript.Segment, string, error) {
+func (f *fakes) Transcribe(ctx context.Context, wav, lang, prompt string) ([]transcript.Segment, string, error) {
 	f.transLang = lang
+	f.prompt = prompt
 	if f.onTrans != nil {
 		f.onTrans()
 	}
@@ -409,5 +414,53 @@ func TestSourceIsTheValidatedURL(t *testing.T) { // shield 2026-09-26, finding 2
 	}
 	if _, body := e.only(t); !strings.Contains(body, `source: "https://www.youtube.com/watch?v=qD0_yWgifDM"`) {
 		t.Errorf("source not from validated URL:\n%s", body[:300])
+	}
+}
+
+func TestLiveStreamIsRefused(t *testing.T) { // v1.1, shield S5
+	e := newEnv(t, "youtube-pt-nosubs.json")
+	e.f.video.Live = true
+	if code := e.run(ptURL); code != ExitRuntime || e.f.audio != 0 {
+		t.Fatalf("exit %d audio %d", code, e.f.audio)
+	}
+	if !strings.Contains(e.err.String(), "live") {
+		t.Errorf("stderr = %q", e.err)
+	}
+}
+
+func TestTooLongVideoIsRefused(t *testing.T) { // v1.1, shield S5
+	e := newEnv(t, "youtube-pt-nosubs.json")
+	e.f.video.Duration = 5 * time.Hour
+	if code := e.run(ptURL); code != ExitRuntime || e.f.audio != 0 {
+		t.Fatalf("exit %d audio %d", code, e.f.audio)
+	}
+}
+
+func TestDownloadsArePinnedToProbedVideo(t *testing.T) { // v1.1, shield re-review
+	e := newEnv(t, "youtube-pt-nosubs.json")
+	if code := e.run(ptURL); code != ExitOK {
+		t.Fatalf("exit %d: %s", code, e.err)
+	}
+	e2 := newEnv(t, "youtube-ted-ed.json")
+	if code := e2.run(tedURL); code != ExitOK {
+		t.Fatalf("exit %d: %s", code, e2.err)
+	}
+	if got := append(e.f.expectIDs, e2.f.expectIDs...); len(got) != 2 || got[0] != "MKU9suCNJQo" || got[1] != "qD0_yWgifDM" {
+		t.Errorf("expected IDs = %q", got)
+	}
+}
+
+func TestWhisperPromptHasNames(t *testing.T) { // v1.1
+	e := newEnv(t, "x-poteto.json")
+	if code := e.run(xURL); code != ExitOK {
+		t.Fatalf("exit %d: %s", code, e.err)
+	}
+	if e.f.prompt != "@poteto" {
+		t.Errorf("X prompt = %q", e.f.prompt)
+	}
+	e2 := newEnv(t, "youtube-pt-nosubs.json")
+	e2.run(ptURL)
+	if want := "MISTÉRIOS do UNIVERSO - MELHORES MOMENTOS - SÉRGIO SACANI. Cortes do Inteligência [OFICIAL]."; e2.f.prompt != want {
+		t.Errorf("YouTube prompt = %q, want %q", e2.f.prompt, want)
 	}
 }

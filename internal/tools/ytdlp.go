@@ -29,6 +29,12 @@ func (y YtDlp) call(ctx context.Context, url string, o media.FetchOpts, extra ..
 	if o.Cookies != "" {
 		args = append(args, "--cookies", o.Cookies)
 	}
+	if o.ExpectID != "" {
+		if strings.ContainsAny(o.ExpectID, "'&\\ ") {
+			return nil, fmt.Errorf("invalid video id %q", o.ExpectID)
+		}
+		args = append(args, "--match-filters", "!is_live & display_id='"+o.ExpectID+"'")
+	}
 	args = append(args, extra...)
 	args = append(args, "--", url)
 	out, err := y.run(ctx, y.Bin, args...)
@@ -63,9 +69,12 @@ func (y YtDlp) Probe(ctx context.Context, url string, o media.FetchOpts) (media.
 
 // FetchCaptions downloads the manual caption lang as WebVTT into dir.
 func (y YtDlp) FetchCaptions(ctx context.Context, url, lang, dir string, o media.FetchOpts) (string, error) {
-	_, err := y.call(ctx, url, o, "--skip-download", "--write-subs", "--no-write-auto-subs",
+	out, err := y.call(ctx, url, o, "--skip-download", "--write-subs", "--no-write-auto-subs",
 		"--sub-langs", lang, "--sub-format", "vtt", "-o", filepath.Join(dir, "%(id)s.%(ext)s"))
 	if err != nil {
+		return "", err
+	}
+	if err := filtered(out); err != nil {
 		return "", err
 	}
 	return single(filepath.Join(dir, "*.vtt"))
@@ -73,10 +82,23 @@ func (y YtDlp) FetchCaptions(ctx context.Context, url, lang, dir string, o media
 
 // FetchAudio downloads the best audio stream into dir.
 func (y YtDlp) FetchAudio(ctx context.Context, url, dir string, o media.FetchOpts) (string, error) {
-	if _, err := y.call(ctx, url, o, "-f", "bestaudio/best", "-o", filepath.Join(dir, "audio.%(ext)s")); err != nil {
+	out, err := y.call(ctx, url, o, "-f", "bestaudio/best", "--max-filesize", "4G", "-o", filepath.Join(dir, "audio.%(ext)s"))
+	if err != nil {
+		return "", err
+	}
+	if err := filtered(out); err != nil {
 		return "", err
 	}
 	return single(filepath.Join(dir, "audio.*"))
+}
+
+// filtered reports a download that --match-filters skipped. yt-dlp exits 0
+// in that case, so the only signal is its output.
+func filtered(out []byte) error {
+	if strings.Contains(string(out), "does not pass filter") {
+		return errors.New("yt-dlp skipped the download: the video changed or went live since the metadata was read")
+	}
+	return nil
 }
 
 func single(pattern string) (string, error) {

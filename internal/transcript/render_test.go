@@ -65,7 +65,7 @@ func TestRenderMarkdownXOmitsUnknownFieldsAndLinks(t *testing.T) {
 	d.AudioSHA256 = ""
 	d.Transcriber = "captions-manual"
 	want := `---
-title: "Say \"hi\" \\ bye"
+title: "Line one."
 source: "https://x.com/poteto/status/2102050467505430555"
 author:
   - "[[@poteto]]"
@@ -181,5 +181,33 @@ func TestRenderMarkdownBackslashCannotReopenSyntax(t *testing.T) { // shield re-
 	got := string(RenderMarkdown(d))
 	if want := "\\\\\\[x\\\\\\](https://e) \\\\\\`$= x;//\\` \\\\\\#t"; !strings.Contains(got, want) {
 		t.Errorf("backslash not escaped, want %s in:\n%s", want, got)
+	}
+}
+
+func TestRenderMarkdownFrontmatterDropsHTMLAndCode(t *testing.T) { // v1.1, shield re-review
+	d := doc(media.YouTube)
+	d.Video.Title = "a <img src=x> `$= b` #c"
+	d.Video.Description = "d <iframe> `e`"
+	got := string(RenderMarkdown(d))
+	for _, want := range []string{`title: "a img src=x $= b #c"`, `description: "d iframe e"`} {
+		if !strings.Contains(got, want) {
+			t.Errorf("missing %s in:\n%s", want, got)
+		}
+	}
+}
+
+func TestRenderMarkdownXTitleFromPostText(t *testing.T) { // v1.1
+	d := doc(media.X)
+	d.Video.Title = "lauren - here's how i shipped ... ori..."
+	d.Video.Description = "here's how i shipped 2,500 PRs\nsecond line"
+	if got := string(RenderMarkdown(d)); !strings.Contains(got, `title: "here's how i shipped 2,500 PRs"`) {
+		t.Errorf("X title:\n%s", got)
+	}
+	d.Video.Description = strings.Repeat("palavra ", 30)
+	got := string(RenderMarkdown(d))
+	line := got[strings.Index(got, "title: "):]
+	line = line[:strings.Index(line, "\n")]
+	if n := len([]rune(line)); n > len(`title: ""`)+100 || strings.HasSuffix(line, ` "`) {
+		t.Errorf("long X title not cut at a word: %q", line)
 	}
 }

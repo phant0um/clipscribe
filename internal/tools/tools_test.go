@@ -160,7 +160,7 @@ func TestWhisperArgsAndOutput(t *testing.T) {
 	}}
 	w := Whisper{Bin: "whisper-cli", Model: "/m/model.bin", run: r.run}
 	wav := filepath.Join(t.TempDir(), "audio.wav")
-	segs, lang, err := w.Transcribe(context.Background(), wav, "auto")
+	segs, lang, err := w.Transcribe(context.Background(), wav, "auto", "")
 	if err != nil || lang != "pt" || len(segs) != 40 || segs[1].Text != "da aula." {
 		t.Fatalf("lang=%q n=%d err=%v", lang, len(segs), err)
 	}
@@ -180,4 +180,42 @@ func contains(s []string, x string) bool {
 		}
 	}
 	return false
+}
+
+func TestYtDlpDownloadsArePinned(t *testing.T) { // v1.1, shield re-review and S5
+	dir := t.TempDir()
+	r := &fakeRunner{}
+	y := YtDlp{Bin: "yt-dlp", run: r.run}
+	o := media.FetchOpts{ExpectID: "qD0_yWgifDM"}
+	y.FetchAudio(context.Background(), "u", dir, o)
+	y.FetchCaptions(context.Background(), "u", "en", dir, o)
+	for i, c := range r.calls {
+		if argAfter(c.args, "--match-filters") != "!is_live & display_id='qD0_yWgifDM'" {
+			t.Errorf("call %d args %q", i, c.args)
+		}
+	}
+	if argAfter(r.calls[0].args, "--max-filesize") != "4G" {
+		t.Errorf("audio args %q", r.calls[0].args)
+	}
+}
+
+func TestYtDlpFilteredDownloadIsExplained(t *testing.T) {
+	r := &fakeRunner{stdout: []byte("[download] qD0_yWgifDM does not pass filter (display_id='x'), skipping ..\n")}
+	y := YtDlp{Bin: "yt-dlp", run: r.run}
+	_, err := y.FetchAudio(context.Background(), "u", t.TempDir(), media.FetchOpts{ExpectID: "x"})
+	if err == nil || !strings.Contains(err.Error(), "changed or went live") {
+		t.Fatalf("err = %v", err)
+	}
+}
+
+func TestWhisperPrompt(t *testing.T) { // v1.1
+	fixture, _ := os.ReadFile("../../testdata/whisper/pt-sacani.json")
+	r := &fakeRunner{effect: func(args []string) { os.WriteFile(argAfter(args, "-of")+".json", fixture, 0o600) }}
+	w := Whisper{Bin: "whisper-cli", Model: "/m", run: r.run}
+	wav := filepath.Join(t.TempDir(), "a.wav")
+	w.Transcribe(context.Background(), wav, "auto", "@poteto")
+	w.Transcribe(context.Background(), wav, "auto", "")
+	if argAfter(r.calls[0].args, "--prompt") != "@poteto" || contains(r.calls[1].args, "--prompt") {
+		t.Errorf("args %q / %q", r.calls[0].args, r.calls[1].args)
+	}
 }

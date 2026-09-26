@@ -68,3 +68,12 @@ func TestCaptionFor(t *testing.T) {
 		}
 	}
 }
+
+func TestParseVideoLive(t *testing.T) { // v1.1, shield S5
+	for status, want := range map[string]bool{"is_live": true, "is_upcoming": true, "was_live": false, "not_live": false} {
+		v, err := ParseVideo([]byte(`{"id":"qD0_yWgifDM","extractor_key":"Youtube","live_status":"` + status + `"}`))
+		if err != nil || v.Live != want {
+			t.Errorf("%s: live=%v err=%v", status, v.Live, err)
+		}
+	}
+}
