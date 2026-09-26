@@ -14,7 +14,7 @@ O clipping segue o schema do Obsidian Web Clipper. O pipeline do vault ingere es
 - Agrupa a fala em parágrafos com timestamp. No YouTube, o timestamp é um link para o ponto do vídeo.
 - Pula vídeos já transcritos, procurando `platform` e `video_id` no frontmatter do inbox e do archive.
 - Grava de forma atômica. O pipeline nunca vê um clipping pela metade.
-- Recusa live e vídeo com mais de 4 h. O download de áudio tem teto de 4 GB.
+- Recusa live e vídeo com mais de 4 h. No YouTube, o download de áudio tem teto de 4 GB. No X, o áudio vem em HLS e o yt-dlp não aplica esse teto; o limite ali é só a duração.
 
 ## Requisitos
 

@@ -219,3 +219,16 @@ func TestWhisperPrompt(t *testing.T) { // v1.1
 		t.Errorf("args %q / %q", r.calls[0].args, r.calls[1].args)
 	}
 }
+
+func TestYtDlpRejectsUnsafeExpectedID(t *testing.T) { // defence in depth for --match-filters
+	r := &fakeRunner{}
+	y := YtDlp{Bin: "yt-dlp", run: r.run}
+	for _, id := range []string{"x' & title='y", `a\b`, "a b"} {
+		if _, err := y.FetchAudio(context.Background(), "u", t.TempDir(), media.FetchOpts{ExpectID: id}); err == nil {
+			t.Errorf("%q accepted", id)
+		}
+	}
+	if len(r.calls) != 0 {
+		t.Errorf("yt-dlp ran %d times", len(r.calls))
+	}
+}

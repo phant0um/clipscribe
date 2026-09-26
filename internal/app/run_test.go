@@ -464,3 +464,12 @@ func TestWhisperPromptHasNames(t *testing.T) { // v1.1
 		t.Errorf("YouTube prompt = %q, want %q", e2.f.prompt, want)
 	}
 }
+
+func TestWhisperPromptDropsControlCharacters(t *testing.T) {
+	e := newEnv(t, "x-poteto.json")
+	e.f.video.Author = "po\nte\x1bto"
+	e.run(xURL)
+	if e.f.prompt != "@po te to" {
+		t.Errorf("prompt = %q", e.f.prompt)
+	}
+}
