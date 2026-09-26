@@ -63,4 +63,4 @@ Checkpoint: todos os ACs das US1–US6 verdes com fakes.
 - [x] T072 → T070. `fullstack-security-audit` no repositório. Corrigir achados.
 - [x] T073 → T072. README e instalação com `content-synthesis`.
 - [x] T074 → T073. `verify-report.md`: cada AC com PASS, FAIL ou PARTIAL.
-- [ ] T075 → T074. `shipping-checklist`.
+- [x] T075 → T074. `shipping-checklist`.
